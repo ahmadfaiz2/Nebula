@@ -1,0 +1,347 @@
+/* ============================================================
+   NEBULA — ISS Tracker  (is- prefix)
+   ============================================================ */
+
+.is-main { padding-top: var(--nav-h); }
+.is-wrap { width: 100%; max-width: 1180px; margin: 0 auto; padding: 0 28px; }
+
+/* ── Page Header ── */
+.is-header { padding: 36px 0 28px; }
+.is-header__top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+}
+.is-eyebrow {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #00d4ff;
+  margin-bottom: 8px;
+}
+.is-heading {
+  font-family: var(--font-orb);
+  font-weight: 700;
+  font-size: 2.4rem;
+  color: #fff;
+  margin: 0 0 14px;
+  line-height: 1.1;
+}
+
+/* ── LIVE Badge ── */
+.is-live-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  padding: 10px 16px;
+  background: rgba(0,230,118,0.07);
+  border: 1px solid rgba(0,230,118,0.28);
+  border-radius: 12px;
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+.is-live-indicator { display: flex; align-items: center; gap: 8px; }
+.is-live-dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: #00e676;
+  animation: is-live-pulse 1.5s ease-in-out infinite;
+}
+@keyframes is-live-pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(0,230,118,0.65); }
+  70%  { box-shadow: 0 0 0 10px rgba(0,230,118,0); }
+  100% { box-shadow: 0 0 0 0 rgba(0,230,118,0); }
+}
+.is-live-text { font-size: 0.85rem; font-weight: 800; letter-spacing: 2px; color: #00e676; }
+.is-live-sub  { font-size: 0.67rem; color: var(--muted); white-space: nowrap; }
+
+/* Refresh row */
+.is-refresh-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.is-countdown {
+  font-size: 0.82rem;
+  color: var(--muted);
+  font-family: 'JetBrains Mono', monospace;
+}
+.is-btn-refresh {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #00d4ff;
+  background: rgba(0,212,255,0.08);
+  border: 1px solid rgba(0,212,255,0.25);
+  border-radius: 8px;
+  padding: 6px 13px;
+  cursor: pointer;
+  transition: background 160ms ease;
+}
+.is-btn-refresh:hover { background: rgba(0,212,255,0.15); }
+.is-btn-refresh:disabled { opacity: 0.45; cursor: not-allowed; }
+.is-btn-refresh svg { transition: transform 600ms ease; }
+.is-btn-refresh:not(:disabled):hover svg { transform: rotate(180deg); }
+
+/* ── Map Section ── */
+.is-map-section { margin-bottom: 32px; }
+.is-map-container {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(0,212,255,0.2);
+  box-shadow: 0 8px 48px rgba(0,0,0,0.6);
+}
+
+/* ISS Marker dot */
+.is-iss-dot {
+  position: relative;
+  width: 48px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.is-iss-dot__core {
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: #ffd700;
+  box-shadow: 0 0 0 4px rgba(255,215,0,0.22), 0 0 22px rgba(255,215,0,0.9);
+  z-index: 2;
+  position: relative;
+}
+.is-iss-dot__ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  width: 48px; height: 48px;
+  border: 2px solid rgba(255,215,0,0.5);
+  animation: is-ring-expand 2.2s ease-out infinite;
+}
+.is-iss-dot__label {
+  position: absolute;
+  top: 36px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.62rem;
+  font-weight: 800;
+  color: #ffd700;
+  letter-spacing: 1.5px;
+  white-space: nowrap;
+  text-shadow: 0 0 6px rgba(0,0,0,1), 0 0 12px rgba(0,0,0,1);
+}
+@keyframes is-ring-expand {
+  0%   { transform: scale(0.5); opacity: 0.9; }
+  100% { transform: scale(1.9); opacity: 0; }
+}
+
+/* Map buttons (absolute over map) */
+.is-map-btns {
+  position: absolute;
+  top: 14px; right: 14px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.is-map-btn {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(10,10,15,0.88);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 9px;
+  color: var(--muted);
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 8px 12px;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: all 160ms ease;
+  white-space: nowrap;
+}
+.is-map-btn:hover { border-color: var(--accent-2); color: #fff; }
+.is-map-btn.active {
+  background: rgba(108,99,255,0.28);
+  border-color: var(--accent);
+  color: #c8c4ff;
+}
+
+/* Leaflet overrides */
+.leaflet-container { background: #060c1a !important; font-family: var(--font-body); }
+.leaflet-control-zoom { display: none; }
+.leaflet-control-attribution {
+  background: rgba(6,12,26,0.85) !important;
+  color: rgba(136,136,170,0.7) !important;
+  font-size: 9px !important;
+  padding: 2px 8px !important;
+  border-radius: 6px 0 0 0 !important;
+}
+.leaflet-control-attribution a { color: #9b8cff !important; }
+.leaflet-tooltip {
+  background: rgba(18,18,26,0.96) !important;
+  border: 1px solid var(--border) !important;
+  color: #fff !important;
+  font-family: 'JetBrains Mono', monospace !important;
+  font-size: 0.78rem !important;
+  border-radius: 8px !important;
+  padding: 6px 12px !important;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.5) !important;
+  white-space: nowrap;
+}
+.leaflet-tooltip::before { display: none !important; }
+
+/* Error banner above map */
+.is-error-banner {
+  background: rgba(26,10,10,0.95);
+  border: 1px solid rgba(255,77,77,0.35);
+  border-radius: 10px;
+  padding: 14px 20px;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.88rem;
+  color: #ff8080;
+}
+
+/* ── Stats Grid — 6 cards, 3 columns ── */
+.is-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 36px;
+}
+.is-stat-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 20px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: border-color 200ms ease;
+}
+.is-stat-card:hover { border-color: rgba(0,212,255,0.3); }
+.is-stat-card__icon { margin-bottom: 2px; }
+.is-stat-card__label {
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 700;
+}
+.is-stat-card__val {
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.15;
+}
+.is-stat-card__unit { font-size: 0.72rem; color: var(--muted); margin-top: -2px; }
+
+/* Color variants */
+.is-stat-blue  .is-stat-card__icon { color: #00d4ff; }
+.is-stat-blue  .is-stat-card__val  { color: #00d4ff; }
+.is-stat-purple .is-stat-card__icon { color: var(--accent-2); }
+.is-stat-purple .is-stat-card__val  { color: var(--accent-2); }
+.is-stat-yellow .is-stat-card__icon { color: #ffd700; }
+.is-stat-yellow .is-stat-card__val  { color: #ffd700; }
+.is-stat-green  .is-stat-card__icon { color: #00e676; }
+.is-stat-green  .is-stat-card__val  { color: #00e676; }
+.is-stat-muted  .is-stat-card__icon { color: var(--muted); }
+.is-stat-muted  .is-stat-card__val  { color: var(--muted); font-size: 1.05rem; }
+
+/* Flash on data update */
+.is-stat-card.flash .is-stat-card__val {
+  animation: is-flash 400ms ease;
+}
+@keyframes is-flash {
+  0%, 100% { opacity: 1; }
+  45%       { opacity: 0.15; }
+}
+
+/* ── Skeleton ── */
+.is-skeleton {
+  background: linear-gradient(90deg, var(--surface) 25%, #1e1e2e 50%, var(--surface) 75%);
+  background-size: 200% 100%;
+  animation: is-shimmer 1.6s ease-in-out infinite;
+  border-radius: 8px;
+}
+@keyframes is-shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+.is-map-skeleton { width: 100%; height: 500px; border-radius: 16px; }
+.is-stat-skeleton { height: 110px; border-radius: 14px; }
+
+/* ── Orbit Info Section ── */
+.is-orbit-section {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 48px 0;
+  margin-top: 0;
+}
+.is-orbit-section .is-wrap { padding-bottom: 0; }
+.is-orbit-heading {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 32px;
+}
+.is-orbit-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+.is-orbit-fact {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 28px 24px;
+  text-align: center;
+  border-right: 1px solid var(--border);
+}
+.is-orbit-fact:last-child { border-right: none; }
+.is-orbit-fact__num {
+  font-family: var(--font-orb);
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 1;
+  text-shadow: 0 0 28px rgba(108,99,255,0.45);
+  margin-bottom: 2px;
+}
+.is-orbit-fact__unit { font-size: 0.88rem; color: var(--muted); font-weight: 500; }
+.is-orbit-fact__title { font-size: 0.95rem; font-weight: 700; color: #fff; margin-top: 6px; }
+.is-orbit-fact__desc { font-size: 0.82rem; color: var(--muted); line-height: 1.55; max-width: 200px; }
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .is-heading { font-size: 1.9rem; }
+  .is-map-container { height: 420px; }
+}
+@media (max-width: 760px) {
+  .is-wrap { padding: 0 16px; }
+  .is-header { padding: 22px 0 18px; }
+  .is-heading { font-size: 1.45rem; }
+  .is-map-container { height: 280px; }
+  .is-map-skeleton { height: 280px; }
+  .is-map-btn span { display: none; }
+  .is-map-btn { padding: 8px 10px; }
+  .is-stats { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .is-stat-card { padding: 16px; }
+  .is-stat-card__val { font-size: 1.1rem; }
+  .is-orbit-grid { grid-template-columns: 1fr; }
+  .is-orbit-fact { border-right: none; border-bottom: 1px solid var(--border); padding: 20px 16px; }
+  .is-orbit-fact:last-child { border-bottom: none; }
+  .is-orbit-fact__num { font-size: 2.4rem; }
+  .is-orbit-section { padding: 32px 0; }
+}
